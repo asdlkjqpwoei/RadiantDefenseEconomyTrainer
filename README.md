@@ -6,16 +6,20 @@
 
 ## 编译
 
-需要 Windows x64、Visual Studio 2026 的 .NET 桌面开发组件、.NET Framework 4.8 Developer Pack，以及 CMake 4.2 或更高版本。
-
-在项目目录运行：
+- Visual Studio 2026 的“.NET 桌面开发”和“使用 C++ 的桌面开发”工作负载，包含 MSVC x64/x86 构建工具和 Windows SDK。
+- .NET Framework 4.8 Developer Pack；仅安装运行时或其他版本的 .NET SDK 不能替代此引用包。
+- CMake 4.2 或更高版本，并确保 `cmake`、`ctest` 可从命令行调用。
 
 ```powershell
 cmake --preset vs2026
 cmake --build --preset vs2026-release
 ```
 
-也可以在 Visual Studio 2026 中打开 `build\vs2026\RadiantDefenseEconomyTrainer.slnx`。Release 程序位于 `build\vs2026\Release\Radiant Defense Economy Trainer.exe`，运行时文本配置位于同一目录的 `trainer.yaml`。
+如有环境变动
+
+```powershell
+cmake --fresh --preset vs2026
+```
 
 ## 测试
 
@@ -26,4 +30,4 @@ cmake --build --preset vs2026-release
 ctest --preset vs2026-release
 ```
 
-`TrainerSelfTest` 会检查 YAML 与中英界面、窗口布局、自动余额定位、修改/增加/锁定写入，以及模拟游戏进程退出时的恢复提示；测试使用独立的模拟进程，不会修改已安装的游戏。
+`TrainerSelfTest` 会检查 YAML 与中英界面、窗口布局、自动余额定位、修改/增加/锁定写入，以及模拟游戏进程退出时的恢复提示。

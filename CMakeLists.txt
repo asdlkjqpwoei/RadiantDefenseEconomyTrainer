@@ -15,9 +15,10 @@ endif()
 
 find_path(RADIANTDEFENSETRAINER_NET48_REFERENCE_DIR
   NAMES mscorlib.dll
-  PATHS
-    "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.8"
-    "C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.8"
+  HINTS
+    ENV "ProgramFiles(x86)"
+    ENV ProgramFiles
+  PATH_SUFFIXES "Reference Assemblies/Microsoft/Framework/.NETFramework/v4.8"
   NO_DEFAULT_PATH
 )
 
