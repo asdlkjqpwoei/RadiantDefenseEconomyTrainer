@@ -1,6 +1,8 @@
 # Radiant Defense Economy Trainer
 
-该项目为AI生成的辐射塔防金钱修改器,此README也为AI生成。
+该项目为AI生成的辐射塔防金钱修改器，此README也为AI生成。
+
+适用于Microsoft Store中的Radiant Defense。
 
 ## 编译
 
