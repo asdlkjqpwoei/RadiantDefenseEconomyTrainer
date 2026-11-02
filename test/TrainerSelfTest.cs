@@ -26,6 +26,7 @@ class TrainerSelfTest
         Application.SetCompatibleTextRenderingDefault(false);
         try
         {
+            TestDeploymentFiles();
             TestLocalizationAndForm();
             TestLocatorAndMoneyWrites();
         }
@@ -38,6 +39,29 @@ class TrainerSelfTest
             ? "ALL PASS (" + checks + " checks)"
             : failures + " of " + checks + " checks failed");
         return failures == 0 ? 0 : 1;
+    }
+
+    static void TestDeploymentFiles()
+    {
+        string configurationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+            TrainerLocalization.CONFIG_FILENAME);
+        Check(File.Exists(configurationPath), "YAML is deployed next to the executable");
+        Check(File.Exists(Assembly.GetExecutingAssembly().Location + ".config"),
+            ".NET Framework runtime configuration is deployed next to the executable");
+
+        string originalDirectory = Environment.CurrentDirectory;
+        try
+        {
+            Environment.CurrentDirectory = Environment.SystemDirectory;
+            TrainerLocalization localization = TrainerLocalization.LoadDefault();
+            Check(string.Equals(localization.ConfigPath, Path.GetFullPath(configurationPath),
+                StringComparison.OrdinalIgnoreCase),
+                "YAML is loaded from the executable directory outside the repository");
+        }
+        finally
+        {
+            Environment.CurrentDirectory = originalDirectory;
+        }
     }
 
     static int RunFakeTarget()

@@ -1,14 +1,18 @@
 # Radiant Defense Economy Trainer
 
-该项目为AI生成的辐射塔防金钱修改器，此README也为AI生成。
+该项目为AI生成的辐射塔防金钱修改器，此README也为AI辅助生成。
 
-适用于Microsoft Store中的Radiant Defense。
+适用于Microsoft Store中的Radiant Defense 2.3.2-195，由Hexage开发的手机塔防游戏。
+
+## 运行要求
+
+Windows 10/11 x64 和 .NET Framework 4.8 或兼容的更高版本
 
 ## 编译
 
-- Visual Studio 2026 的“.NET 桌面开发”和“使用 C++ 的桌面开发”工作负载，包含 MSVC x64/x86 构建工具和 Windows SDK。
-- .NET Framework 4.8 Developer Pack；仅安装运行时或其他版本的 .NET SDK 不能替代此引用包。
-- CMake 4.2 或更高版本，并确保 `cmake`、`ctest` 可从命令行调用。
+- Visual Studio 2026 的“.NET 桌面开发”和“使用 C++ 的桌面开发”工作负载，包含 MSVC x64/x86 构建工具和 Windows SDK
+- .NET Framework 4.8 Developer Pack
+- CMake 4.2 或更高版本
 
 ```powershell
 cmake --preset vs2026
@@ -21,13 +25,18 @@ cmake --build --preset vs2026-release
 cmake --fresh --preset vs2026
 ```
 
-## 测试
+## 发布
 
-编译并运行整合自检：
+完成 Release 构建后执行：
 
 ```powershell
-cmake --build --preset vs2026-release
-ctest --preset vs2026-release
+cpack --preset vs2026-release
 ```
 
-`TrainerSelfTest` 会检查 YAML 与中英界面、窗口布局、自动余额定位、修改/增加/锁定写入，以及模拟游戏进程退出时的恢复提示。
+## 测试
+
+运行已编译的 Release 版本整合自检：
+
+```powershell
+ctest --preset vs2026-release
+```

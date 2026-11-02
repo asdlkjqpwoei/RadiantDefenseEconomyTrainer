@@ -28,6 +28,19 @@
       "configuration": "Release"
     }
   ],
+  "packagePresets": [
+    {
+      "name": "vs2026-release",
+      "displayName": "Visual Studio 2026 Release ZIP",
+      "configurePreset": "vs2026",
+      "configurations": [
+        "Release"
+      ],
+      "generators": [
+        "ZIP"
+      ]
+    }
+  ],
   "testPresets": [
     {
       "name": "vs2026-debug",
